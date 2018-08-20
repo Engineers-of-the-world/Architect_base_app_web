@@ -21,7 +21,7 @@ public class Conexionbd {
     Connection con; // objeto conexión.    
     Statement st;
     ResultSet rs;
-    public void Conexionbd() {
+    public Conexionbd() {
         try {
             // We register the PostgreSQL driver
             // Registramos el driver de PostgresSQL
