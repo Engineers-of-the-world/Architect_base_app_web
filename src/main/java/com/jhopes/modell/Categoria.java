@@ -3,14 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhopes.bean;
+package com.jhopes.modell;
 
 /**
  *
  * @author P&D
  */
-public class categoria {
-    String id_categoria, name_cat, estado;
+public class Categoria {
+
+    public String id_categoria, name_cat, estado;
+
+    public Categoria(String id_categoria, String name_cat, String estado) {
+        this.id_categoria = id_categoria;
+        this.name_cat = name_cat;
+        this.estado = estado;
+    }
+
+    public Categoria() {
+    }
 
     public String getId_categoria() {
         return id_categoria;
@@ -34,6 +44,6 @@ public class categoria {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }   
-    
+    }
+
 }

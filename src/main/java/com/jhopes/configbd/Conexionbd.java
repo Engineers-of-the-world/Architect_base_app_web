@@ -35,7 +35,7 @@ public class Conexionbd {
             con = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/dbprueba",
                     "postgres", "123456");
- 
+            st = (Statement) con.createStatement();
             boolean valid = con.isValid(50000);
             System.out.println(valid ? "TEST OK" : "TEST FAIL");
         } catch (java.sql.SQLException sqle) {
