@@ -11,15 +11,18 @@ package com.jhopes.modell;
  */
 public class Categoria {
 
-    public String id_categoria, name_cat, estado;
+    private String id_categoria, name_cat, estado;
+    boolean canEdit;
 
     public Categoria(String id_categoria, String name_cat, String estado) {
         this.id_categoria = id_categoria;
         this.name_cat = name_cat;
         this.estado = estado;
+        this.canEdit=false;
     }
 
     public Categoria() {
+        this.canEdit=false;
     }
 
     public String getId_categoria() {
@@ -45,5 +48,11 @@ public class Categoria {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public boolean isCanEdit() {
+      return canEdit;
+   }
 
+   public void setCanEdit(boolean canEdit) {
+      this.canEdit = canEdit;
+   }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.jhopes.dao.CategoriaDAO;
+import java.util.List;
 
 /**
  *
@@ -23,7 +24,7 @@ public class CategoriaCtrlImpl implements CategoriaDAO {
     Conexionbd cx;
     String sql;
     ResultSet rs;
-    ArrayList<Categoria> listDatos;
+    List<Categoria> listDatos;
 
     public CategoriaCtrlImpl() {
         cx = new Conexionbd();
@@ -37,7 +38,7 @@ public class CategoriaCtrlImpl implements CategoriaDAO {
     }
 
     @Override
-    public ArrayList<Categoria> readCategoria() {
+    public List<Categoria> readCategoria() {
         listDatos = new ArrayList<>();
         sql = "SELECT id_categoria, name_cat , estado "
                 + "    FROM public.categoria";
