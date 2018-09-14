@@ -23,19 +23,20 @@ import javax.faces.bean.ViewScoped;
 public class CategoriaCtrl implements Serializable {
     private static final long serialVersionUID = 1L;
     private Categoria selected;
-    private boolean est;
     private CategoriaDAO catdao;
     private List<Categoria> list = new ArrayList<Categoria>();
     
 
-    public CategoriaCtrl() {
+    public CategoriaCtrl() { 
         this.selected = new Categoria();
         this.catdao = new CategoriaCtrlImpl();
     }
 
     public void createCategoria() {        
+        this.catdao = new CategoriaCtrlImpl();
         if (catdao.createCategoria(selected)) {
             System.out.println("Insertado");
+            this.selected = new Categoria();
         } else {
             System.out.println("Error al momento de insertar");
         }
@@ -46,22 +47,23 @@ public class CategoriaCtrl implements Serializable {
         return list;
     }
     public void prepareUpdate(Categoria cat){
-    //this.selected = new Categoria();
-        System.out.println("hola cattttt ");
+    this.selected = new Categoria();
+        System.out.println("ID_CATEGORIA "+cat.getId_categoria());
     this.selected = cat;
     }
-    public void updateCategoria() {
+    public void updateCategoria() {   
         System.out.println("Id categoria = "+selected.getId_categoria());
         System.out.println("valor de edit "+selected.getName_cat());
         if (catdao.updateCategoria(selected)) {
             System.out.println("Actualizado");
+            this.selected = new Categoria();
         } else {
             System.out.println("Error al momento de actualizar");
         }
         
     }
     public void deleteCategoria(String id){
-        
+        this.catdao = new CategoriaCtrlImpl();
         if (catdao.deleteCategoria(id)) {
             System.out.println("Eliminado"+id);
         } else {

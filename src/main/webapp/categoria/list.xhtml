@@ -14,6 +14,7 @@
         </ui:insert>
         <h2>Categoria</h2>   
         <h:form id="formdatatable">
+            <b:button onclick="$('.createModalClass').modal('show')" value="Create" look="success"/>
             <b:dataTable value="#{categoriaCtrl.list}"
                          var="c" >
                 <b:dataTableColumn value="#{c.id_categoria}" order="desc" />
@@ -24,62 +25,56 @@
                 <b:dataTableColumn value="#{c.estado}" />
                 <b:dataTableColumn label="Opciones">
                     <b:panelGrid columns="2"> 
-                        <b:button value="Edit" 
-                                         onclick="$('.editModalClass').modal('show')" look="success">
-                        </b:button>
-                        <b:commandButton value="Delete" ajax="true" update=":formdatatable" actionListener="#{categoriaCtrl.deleteCategoria(c.id_categoria)}" look="danger">
-                        </b:commandButton>
+                        <b:commandButton value="Edit" ajax="true" update="@form formedit" onclick="ajax:categoriaCtrl.prepareUpdate(c)" oncomplete="$('.editModalClass').modal('show')" look="success"/>
+                        <b:commandButton value="Delete" ajax="true" update=":formdatatable" actionListener="#{categoriaCtrl.deleteCategoria(c.id_categoria)}" look="danger"/>
                     </b:panelGrid>
                 </b:dataTableColumn>                 
-            </b:dataTable> 
-            <!--<b:commandButton value="Create" action="/categoria/create" look="success"/>-->
-            <b:button onclick="$('.createModalClass').modal('show')" value="Create" look="success"/>
-
+            </b:dataTable>             
         </h:form>
-  
+
         <b:modal title="Create categoría" styleClass="createModalClass"
                  closable="false"
                  closeOnEscape="true">
-            <b:form id="forminsert">
+            <b:form>
                 <b:panelGrid columns="1" size="xs">                    
-                <b:inputText id="idcategoriaDiv" value="#{categoriaCtrl.selected.id_categoria}"
-                             label="Id:" />
-                <b:inputText id="name_catDiv" value="#{categoriaCtrl.selected.name_cat}"
-                             label="Categoría:" />
-                <b:inputText id="estadoDiv" value="#{categoriaCtrl.selected.estado}"
-                             label="Estado:" />
+                    <b:inputText id="idcategoriaDiv" value="#{categoriaCtrl.selected.id_categoria}"
+                                 label="Id:" />
+                    <b:inputText id="name_catDiv" value="#{categoriaCtrl.selected.name_cat}"
+                                 label="Categoría:" />
+                    <b:inputText id="estadoDiv" value="#{categoriaCtrl.selected.estado}"
+                                 label="Estado:" />
                 </b:panelGrid>
                 <b:row>
                     <b:column>
                         <b:button largeScreen="half"  value="Cancel"
                                   dismiss="modal" look="danger" onclick="return false;"/>
-                        <b:commandButton oncomplete="$('.createModalClass').modal('hide')" ajax="true"  update=":forminsert"                                   
-                                         value="Save" look="success" actionListener="#{categoriaCtrl.createCategoria}"/>
+                        <b:commandButton oncomplete="$('.createModalClass').modal('hide')"                                
+                                         value="Save" look="success" action="#{categoriaCtrl.createCategoria}"/>
                     </b:column>
                 </b:row>
                 <b:fetchBeanInfos />
                 <b:messages />
             </b:form>
         </b:modal>  
-        
-        <b:modal title="Editar categoría" styleClass="editModalClass"
-                 closable="false"
+
+        <b:modal title="Editar categoría"  styleClass="editModalClass"
+                 closable="true"
                  closeOnEscape="true">
             <b:form id="formedit">
                 <b:panelGrid columns="1" size="xs">                    
-                <b:inputText  value="#{categoriaCtrl.selected.id_categoria}"
-                             label="Id:" />
-                <b:inputText  value="#{categoriaCtrl.selected.name_cat}"
-                             label="Categoría:" />
-                <b:inputText  value="#{categoriaCtrl.selected.estado}"
-                             label="Estado:" />
+                    <b:inputText  value="#{categoriaCtrl.selected.id_categoria}"
+                                  label="Id:" />
+                    <b:inputText  value="#{categoriaCtrl.selected.name_cat}"
+                                  label="Categoría:" />
+                    <b:inputText  value="#{categoriaCtrl.selected.estado}"
+                                  label="Estado:" />
                 </b:panelGrid>
                 <b:row>
                     <b:column>
                         <b:button largeScreen="half"  value="Cancel"
                                   dismiss="modal" look="danger" onclick="return false;"/>
-                        <b:commandButton oncomplete="$('.editModalClass').modal('hide')" ajax="true"  update=":formedit"                                   
-                                         value="Update" look="success" actionListener="#{categoriaCtrl.updateCategoria}"/>
+                        <b:commandButton  oncomplete="$('.editModalClass').modal('hide')"                                   
+                                          value="Update" look="success" action="#{categoriaCtrl.updateCategoria}"/>
                     </b:column>
                 </b:row>
                 <b:fetchBeanInfos />

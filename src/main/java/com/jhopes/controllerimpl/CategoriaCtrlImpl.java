@@ -45,6 +45,7 @@ public class CategoriaCtrlImpl implements CategoriaDAO {
         rs = cx.executeQuery(sql);
         try {
             while (rs.next()) {
+                String id = rs.getString("id_categoria");
                 listDatos.add(new Categoria(rs.getString("id_categoria"),rs.getString("name_cat"), rs.getString("estado")));
             }
 
